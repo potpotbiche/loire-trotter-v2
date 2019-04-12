@@ -1,0 +1,248 @@
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  overflow-x: hidden;
+  background: #FABF1E;
+}
+/******************
+LOADER
+****************/
+.home_bg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2em 4em 0em 4em;
+}
+.home_bg, img{
+  margin-bottom: 2em;
+}
+.home_bg .logo-fdv-2019{
+  margin: 2em 4em 0em 4em;
+  width: 50%;
+}
+.start_visit{
+  background: #DA4E31;
+  color: #fff;
+  font-size: 2.5rem;
+  font-weight: bold;
+  padding: 1em 0;
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+  font-family: 'Muli', sans-serif;
+  text-transform: uppercase;
+  width: 100%;
+}
+.shootout{
+  display: flex;
+  flex-wrap: wrap;
+}
+.shootout h3{
+  flex-basis: 100%;
+  font-size: 2.3rem;
+  text-transform: uppercase;
+  margin-top: 1em;
+}
+.shootout .logo-school{
+  margin-left: 6em;
+  margin-top: 1em;
+}
+/********************
+HOMEPAGE
+**********************/
+h1{
+  font-family: 'Muli', sans-serif;
+  text-align: center;
+  color: #fff;
+  font-weight: bold;
+  font-size: 3rem;
+  margin: -0.2em 0 0.3em 0;
+}
+h2{
+  font-family: 'Muli', sans-serif;
+  font-weight: bolder;
+  font-size: 1.7rem;
+  color: #105684;
+  margin: 0.3em 0 0 0;
+  text-align: center;
+}
+h3{
+  font-family: 'Muli', sans-serif;
+font-weight: bolder;
+color: #fff;
+margin: 0;
+text-align: center;
+padding: 0;
+}
+p{
+  font-family: 'Roboto', sans-serif;
+}
+.block-1{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.block-1 .logo-fdv-2019{
+  width: 25%;
+  margin: 1em;
+  }
+.block-1 .block-text{
+  color: white;
+  margin: 1em;
+  padding-bottom: .8em;
+}
+.block-1 .block-text p{
+  margin: .5em;
+  text-align: justify;
+}
+.parcours{
+  background: #fff;
+  margin: 1em;
+  display: flex;
+}
+.parcours .parcours_detail p{
+  margin: .5em;
+}
+.parcours .acces_map{
+  background: #DA4E31;
+  color: #fff;
+  font-size: 2.5rem;
+  font-weight: bold;
+  padding: 1em 0;
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+}
+.parcours .acces_map:hover{
+  background: #fff;
+  color: #DA4E31;
+  border: 3px solid #DA4E31;
+}
+
+/**********************
+POP UP
+**********************/
+body #map .mapboxgl-popup{
+  transform: translate(0%, 670%) translate(10px, -25px) !important;
+      width: 97%;
+      left: -1%;
+}
+body #map .mapboxgl-popup-anchor-left{
+  transform: translate(0%, 670%) translate(10px, -25px) !important;
+}
+body #map .mapboxgl-popup-anchor-left .mapboxgl-popup-content{
+  width: 97%;
+  left: -1%;
+}
+body #map .mapboxgl-popup-anchor-right {
+  transform: translate(0%, 670%) translate(10px, -25px) !important;
+}
+body #map .mapboxgl-popup-anchor-bottom {
+  transform: translate(0%, 670%) translate(10px, -25px) !important;
+}
+body #map .mapboxgl-popup-anchor-right .mapboxgl-popup-content{
+  width: 97%;
+  left: -1%;
+}
+body #map .mapboxgl-popup .mapboxgl-popup-tip{
+  display: none;
+}
+body { margin:0; padding:0; }
+
+/**************************
+FILTER
+*************************/
+#map { position:absolute; top:0; bottom:0; width:100%; }
+#menu {
+    background: #fff;
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    right: 4%;
+    border-radius: 3px;
+    width: 150px;
+    border-bottom: 1px solid rgba(0,0,0,0.4);
+    font-family: 'Muli', sans-serif;
+    text-transform: uppercase;
+
+}
+
+#menu a {
+    font-size: 13px;
+    color: #404040;
+    display: block;
+    margin: 0;
+    padding: 0;
+    padding: 10px;
+    text-decoration: none;
+    text-align: center;
+    font-size: .6rem;
+    border-bottom: 1px solid #fff;
+}
+
+#menu a:last-child {
+    border: none;
+}
+
+#menu a:hover {
+    background-color: #f8f8f8;
+    color: #404040;
+    border-bottom: 1px solid rgba(0,0,0,0.4);
+
+}
+
+#menu a.active {
+    background-color: #105684;
+    color: #ffffff;
+}
+
+#menu a.active:hover {
+    background: #105684;
+}
+#panel, #flip {
+  text-align: center;
+  position: absolute;
+  z-index: 5;
+  right: 3%;
+  top: 1.2%;
+  display: flex;
+  justify-content: center;
+  width: 12%;
+  align-items: center;
+  height: 35px;
+}
+
+#panel {
+  padding: 50px;
+  display: none;
+}
+#panel, #flip .parameters-icon{
+  width: 50%;
+  margin-bottom: 0!important;
+}
+/*******************
+GEOLOC
+******************/
+.mapboxgl-control-container, .mapboxgl-ctrl-top-right{
+  left: 1.5%;
+  right:inherit;
+  top: -0.9%;
+  z-index: 5;
+}
+
+/**********************
+TOP BAR
+************************/
+.bar-map{
+  background: #105684;
+    position: absolute;
+    z-index: 4;
+    padding: .5em;
+    width: 100%;
+}

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8' />
+  <title>Fête du vélo 2019</title>
+  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+  <link rel="shortcut icon" href="images/icon_logo.ico">
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.49.0/mapbox-gl.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.49.0/mapbox-gl.css' rel='stylesheet' />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+  <script type="text/javascript" src="js/main.js"></script>
+</head>
+<body >
+  <div class="bar-map">
+    <h3>La balade Zen</h3>
+    <div id="flip"><img class="parameters-icon" src="./images/parameters.png"></div>
+    <nav id="menu"></nav>
+  </div>
+<div style="max-width: 425px;" id='map'></div>
+<nav id='filter-group' class='filter-group'></nav>
+
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoiYXVndXN0aW5wIiwiYSI6ImNqcjZjMDE0ZjA5OGI0OGxobnNjajByZDEifQ.MBc25I7IEo8FxI8kedRP0g';
+const map = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/augustinp/cjudw65gh03z31fmnucir37ze',
+  center: [-0.127342, 47.261109],
+  zoom: 9.2
+});
+/**************
+  ADD GEOLOC
+****************/
+map.addControl(new mapboxgl.GeolocateControl({
+  positionOptions: {
+    enableHighAccuracy: true
+  },
+  trackUserLocation: true
+}));
+/**************
+POP-UP
+****************/
+map.on('click', function(e) {
+  var features = map.queryRenderedFeatures(e.point, {
+    layers: ['fdv-zen-parcours-point'] // replace this with the name of the layer
+  });
+
+  if (!features.length) {
+    return;
+  }
+
+  var feature = features[0];
+
+  var popup = new mapboxgl.Popup({ offset: [0, -15] })
+    .setLngLat(feature.geometry.coordinates)
+    .setHTML('<h3>' + feature.properties.name + '</h3><p>' + feature.properties.description + '</p>')
+    .setLngLat(feature.geometry.coordinates)
+    .addTo(map);
+});
+/*********************
+FILTRES
+********************/
+map.on('load', function () {
+  //Toilettes
+  map.addSource('Toilettes', {
+    type: 'symbol',
+    url: 'mapbox:/augustinp.cjudvu8b602ht2rr2zk3v0u8k-4wpk4'
+
+  });
+  map.addLayer({
+    'id': 'Toilettes',
+    'type': 'symbol',
+    'source': 'Toilettes',
+    'layout': {
+      'visibility': 'visible'
+    },
+    'source-layer': 'Toilettes'
+  });
+  //Parking
+  map.addSource('Parking', {
+    type: 'symbol',
+    url: 'mapbox:/augustinp.cjudvxyj801br2wp7iwh3pa3e-1sbqa'
+
+  });
+  map.addLayer({
+    'id': 'Parking',
+    'type': 'symbol',
+    'source': 'Parking',
+    'layout': {
+      'visibility': 'visible'
+    },
+    'source-layer': 'Parking'
+  });
+  //Réparateurs
+  map.addSource('Reparateurs', {
+    type: 'symbol',
+    url: 'mapbox:/augustinp.cjudvzd6t01a02yp71y390pv5-2t1xp'
+
+  });
+  map.addLayer({
+    'id': 'Reparateurs',
+    'type': 'symbol',
+    'source': 'Reparateurs',
+    'layout': {
+      'visibility': 'visible'
+    },
+    'source-layer': 'Reparateurs'
+  });
+  //Aires de pique nique
+  map.addSource('Aires de pique nique', {
+    type: 'symbol',
+    url: 'mapbox:/augustinp.cjudw0u3t061n33ns2nc4jn1e-8p8jl'
+
+  });
+  map.addLayer({
+    'id': 'Aires de pique nique',
+    'type': 'symbol',
+    'source': 'Aires de pique nique',
+    'layout': {
+      'visibility': 'visible'
+    },
+    'source-layer': 'Aires de pique nique'
+  });
+  //Poste de secours
+  map.addSource('Poste de secours', {
+    type: 'symbol',
+    url: 'mapbox:/augustinp.cjudw1wc201an2yp7go5v2tkg-5frcl'
+
+  });
+  map.addLayer({
+    'id': 'Poste de secours',
+    'type': 'symbol',
+    'source': 'Poste de secours',
+    'layout': {
+      'visibility': 'visible'
+    },
+    'source-layer': 'Poste de secours'
+  });
+  //Animations
+  map.addSource('Animations', {
+    type: 'symbol',
+    url: 'mapbox:/augustinp.cjudw2vk601he2xp76j88idpe-9pfwh'
+
+  });
+  map.addLayer({
+    'id': 'Animations',
+    'type': 'symbol',
+    'source': 'Animations',
+    'layout': {
+      'visibility': 'visible'
+    },
+    'source-layer': 'Animations'
+  });
+  // //Espaces Naturels
+  // map.addSource('Espaces Naturels', {
+  //   type: 'symbol',
+  //   url: 'mapbox:/augustinp.cjsubhtu84dlm2wqhxdwkf3vy-68sew'
+  //
+  // });
+  // map.addLayer({
+  //   'id': 'Espaces Naturels',
+  //   'type': 'symbol',
+  //   'source': 'Espaces Naturels',
+  //   'layout': {
+  //     'visibility': 'visible'
+  //   },
+  //   'source-layer': 'Espaces Naturels'
+  // });
+});
+
+var toggleableLayerIds = ['Toilettes','Parking','Reparateurs','Aires de pique nique','Poste de secours','Animations'];
+
+for (var i = 0; i < toggleableLayerIds.length; i++) {
+  var id = toggleableLayerIds[i];
+
+  var link = document.createElement('a');
+  link.href = '#';
+  link.className = 'active';
+  link.textContent = id;
+
+  link.onclick = function (e) {
+    var clickedLayer = this.textContent;
+    e.preventDefault();
+    e.stopPropagation();
+
+    var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
+
+    if (visibility === 'visible') {
+      map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+      this.className = '';
+    } else {
+      this.className = 'active';
+      map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
+    }
+  };
+
+  var layers = document.getElementById('menu');
+  layers.appendChild(link);
+}
+
+</script>
+
+</body>
+</html>
